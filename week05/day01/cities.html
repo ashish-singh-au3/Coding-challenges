@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        
+        <script>
+            var state = prompt("Enter state to proceed");
+            var selectedCities = [];
+            $.ajax({
+                url : "https://raw.githubusercontent.com/attainu-nightingale/nightingale-course-module/master/coding-challenges/data/cities.json",
+                type : "GET",
+                dataType : "json",
+                success : function(json) {
+                    var citiesArray = json;
+                    for(var i = 0; i < citiesArray.length ; i++){
+                        if(citiesArray[i].state.toLowerCase() == state.toLowerCase()){
+                            $("ul").html();
+                            $("ul").append("<li>" +citiesArray[i].name+ "</li>");
+                        }
+                    }
+                    
+                },
+                error : function(error){
+                    console.log("OOps!!! This is an error");
+                }
+
+
+            })
+        </script>
+
+    </ul>
+
+    
+</body>
+</html>
